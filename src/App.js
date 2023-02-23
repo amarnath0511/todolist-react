@@ -9,7 +9,10 @@ function App() {
   const [tasktoUpdate , setTasktoUpdate] = useState({})
   const [showPopup,setShowPopup] = useState(false)
   useEffect(() => {
-    axios.get('https://todolist-node.vercel.app/api/tasks').then(res => {
+    axios.get('https://todolist-node.vercel.app/api/tasks', {
+      headers : {'Content-Type':'application/json',
+    'Access-Control-Allow-Origin':'*',
+    'Access-Control-Allow-Methods':'GET,OPTIONS,PATCH,DELETE,POST,PUT'}}).then(res => {
       setTodolist(res.data)
     }).catch(err => console.log(err))
   },[])

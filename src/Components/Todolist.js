@@ -11,10 +11,18 @@ function Todolist(props) {
                 _id : task._id,
                 todo: task.todo,
                 isComplete : !task.isComplete
+            },{
+                headers : {'Content-Type':'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Methods':'GET,OPTIONS,PATCH,DELETE,POST,PUT'}
             }).then(res => props.taskComplete(res.data)).catch(err => console.log(err))
         }
         const removeTask = id => {
-            axios.delete(`https://todolist-node.vercel.app/api/tasks/${id}`).then(res => props.removeTask(res.data)).catch(err => console.log(err))
+            axios.delete(`https://todolist-node.vercel.app/api/tasks/${id}`, {
+                headers : {'Content-Type':'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Methods':'GET,OPTIONS,PATCH,DELETE,POST,PUT'}
+            }).then(res => props.removeTask(res.data)).catch(err => console.log(err))
         } 
         return <li key = {index}>
             <div style = {{display : 'flex'}}>

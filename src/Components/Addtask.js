@@ -10,7 +10,10 @@ function Addtask(props) {
             axios.post('https://todolist-node.vercel.app/api/tasks' , {
                 todo : task,
                 isComplete : false
-            }).then(res => {
+            },{headers : {'Content-Type':'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Methods':'GET,OPTIONS,PATCH,DELETE,POST,PUT'}}
+            ).then(res => {
                 Settask("")
                 props.addTask(res.data)
             }).catch(err => console.log(err))

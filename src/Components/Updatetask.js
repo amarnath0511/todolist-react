@@ -11,6 +11,10 @@ function Updatetask(props) {
                 _id : props.task._id,
                 todo : task,
                 isComplete : props.task.isComplete
+            },{
+                headers : {'Content-Type':'application/json',
+            'Access-Control-Allow-Origin':'*',
+            'Access-Control-Allow-Methods':'GET,OPTIONS,PATCH,DELETE,POST,PUT'}
             }).then(res => {
                 props.removePopup()
                 props.updatetask(res.data)
